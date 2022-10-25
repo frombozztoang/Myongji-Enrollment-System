@@ -1,3 +1,4 @@
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
@@ -19,32 +20,45 @@ public class LoginDialog extends JDialog {
 	
 	private SLogin sLogin;
 	
-	public LoginDialog(Frame parent) {
-		super(parent);
+	public LoginDialog(Frame parent, String title, String msg) {
+		super(parent, title, true); //model dialog 
+		this.setLayout(null);
+		this.setSize(300, 350);
 		
-		LayoutManager layoutManager = new GridLayout(3, 2);
+		
+		LayoutManager layoutManager = new FlowLayout(); // í–‰, ì—´, ìˆ˜ì§ ê°„ê²©, ìˆ˜í‰ ê°„ê²©
 		this.setLayout(layoutManager);
-				
-		JLabel lbId = new JLabel("¾ÆÀÌµğ");
-		this.add(lbId);
+		
+		JPanel loginInputPanel = new JPanel();
+		loginInputPanel.setLayout(new GridLayout (2, 2, 3, 3));
+		
+		JLabel lbId = new JLabel("ì•„ì´ë””");
+		loginInputPanel.add(lbId);
 		
 		this.tfId = new JTextField();
 		this.tfId.setColumns(10);
-		this.add(this.tfId);
+		loginInputPanel.add(this.tfId);
 		
-		JLabel lbPassword = new JLabel("ºñ¹Ğ¹øÈ£");
-		this.add(lbPassword);
+		JLabel lbPassword = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+		
+		loginInputPanel.add(lbPassword);
+	
 		
 		this.tfPassword = new JPasswordField();
 		this.tfPassword.setColumns(10);
-		this.add(this.tfPassword);
+		loginInputPanel.add(this.tfPassword);
 		
-		JButton btLogin = new JButton("·Î±×ÀÎ");
+		loginInputPanel.setVisible(true);
+		this.getContentPane().add(loginInputPanel); // ë¶€ëª¨ì—ë‹¤ê°€ panel ì¶”ê°€ 
+		
+		JButton btLogin = new JButton("ë¡œê·¸ì¸");
 		this.add(btLogin);
 		
 		ActionHandler actionHandler = new ActionHandler();
 		btLogin.addActionListener(actionHandler);
 		
+		
+	
 		this.sLogin = new SLogin();
 	}
 	
@@ -54,7 +68,7 @@ public class LoginDialog extends JDialog {
 		
 		VLogin vLogin = sLogin.login(id);
 		if (vLogin == null) {
-			// ¾ÆÀÌµğ°¡ ¾ø°Å³ª ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.
+			// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ï¿½ï¿½ Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½.
 		}
 
 	}

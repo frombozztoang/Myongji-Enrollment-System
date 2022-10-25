@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
 		SugnasincheongPanel sugnasincheongPanel = new SugnasincheongPanel();
 		this.add(sugnasincheongPanel, BorderLayout.CENTER);
 		
-		LoginDialog loginPanel = new LoginDialog(this);
+		LoginDialog loginPanel = new LoginDialog(this, "Login Dialog", "아이디와 비밀번호를 입력해 주세요.");
 		loginPanel.setVisible(true);
 
 	}
